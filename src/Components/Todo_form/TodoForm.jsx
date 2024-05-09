@@ -6,17 +6,14 @@ import axios from 'axios';
 import { Flip, toast } from 'react-toastify';
 import { useTodoContext } from '../../Context/ContextProvider';
 
-
 const TodoForm = () => {
-
-    const { fetchTodos,formSubmitURL } = useTodoContext()
-
-    const [description,setDescription] = useState('')
+    const { fetchTodos, formSubmitURL } = useTodoContext();
+    const [description, setDescription] = useState('');
     const maxLength = 500;
 
     const initialValues = {
         title: '',
-        date: new Date(),
+        date: new Date().toISOString().substring(0, 10), // Set date value in yyyy-MM-dd format
         description: ''
     };
 
@@ -33,7 +30,6 @@ const TodoForm = () => {
         setFieldValue(name, inputText);
         setDescription(inputText); 
     };
-    
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
@@ -70,6 +66,7 @@ const TodoForm = () => {
             setSubmitting(false);
         }
     };
+
     return (
         <div className='form_container'>
             <header className='header'>
@@ -92,8 +89,7 @@ const TodoForm = () => {
                                                     {touched.title && errors.title && <sup style={{ color: 'red' }}>*</sup>}
                                                     {touched.title && !errors.title && <sup style={{ color: 'green' }}>*</sup>}
                                                 </label>
-                                                <Field type="text" className="form-control" id="title" name="title" placeholder="Please Enter Todo Title here.."
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
+                                                <Field type="text" className="form-control" id="title" name="title" placeholder="Please Enter Todo Title here.." onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
                                                 <ErrorMessage name="title" component="div" className="error-message text-danger" />
                                             </div>
                                             <div className="mb-1">
@@ -102,13 +98,8 @@ const TodoForm = () => {
                                                     {touched.date && errors.date && <sup style={{ color: 'red' }}>*</sup>}
                                                     {touched.date && !errors.date && <sup style={{ color: 'green' }}>*</sup>}
                                                 </label>
-                                                <Field type='date'
-                                                    className="form-control"
-                                                    id="date"
-                                                    name="date"
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
-                                                <div>
-                                                </div>
+                                                <Field type='date' className="form-control" id="date" name="date" onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
+                                                <div></div>
                                                 <ErrorMessage name="date" component="div" className="error-message text-danger" />
                                             </div>
                                             <div className="mb-3">
@@ -117,26 +108,16 @@ const TodoForm = () => {
                                                     {touched.description && errors.description && <sup style={{ color: 'red' }}>*</sup>}
                                                     {touched.description && !errors.description && <sup style={{ color: 'green' }}>*</sup>}
                                                 </label>
-                                                <Field as="textarea" className="form-control" id="description" name="description" placeholder='Text..' rows="3"
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
-                                                    <p className="description_length">{description.length}/{maxLength}</p>
+                                                <Field as="textarea" className="form-control" id="description" name="description" placeholder='Text..' rows="3" onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
+                                                <p className="description_length">{description.length}/{maxLength}</p>
                                                 <ErrorMessage name="description" component="div" className="error-message text-danger" />
-
                                             </div>
                                             <div className="col-12 button_container">
                                                 <button className='Todo_button' data-toggle="modal" data-target="#exampleModalCenter" type='submit' disabled={isSubmitting}>
                                                     <div className="svg-wrapper-1">
                                                         <div className="svg-wrapper">
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 24 24"
-                                                                width="30"
-                                                                height="30"
-                                                                className="icon"
-                                                            >
-                                                                <path
-                                                                    d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
-                                                                ></path>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" className="icon">
+                                                                <path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"></path>
                                                             </svg>
                                                         </div>
                                                     </div>

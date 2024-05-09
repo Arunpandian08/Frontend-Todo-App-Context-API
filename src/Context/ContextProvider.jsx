@@ -100,7 +100,7 @@ const formSubmitURL =`https://backend-todo-app-context-api.onrender.com/api/user
 
 
     return (
-        <TodoContext.Provider value={{ loading, todos, fetchFilteredTodos, handleStatusUpdate, handleDelete, setFilterType, filterType,formSubmitURL }}>
+        <TodoContext.Provider value={{ loading, todos, fetchTodos,fetchFilteredTodos, handleStatusUpdate, handleDelete, setFilterType, filterType,formSubmitURL }}>
             {children}
         </TodoContext.Provider>
     );
