@@ -12,6 +12,7 @@ const ContextProvider = ({ children }) => {
     const [filterType, setFilterType] = useState('all')
 
     useEffect(() => {
+        fetchTodos()
         // Fetch todos when the component mounts
         fetchFilteredTodos(filterType);
     }, [filterType]);

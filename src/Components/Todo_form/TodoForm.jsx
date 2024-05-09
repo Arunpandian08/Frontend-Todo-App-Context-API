@@ -9,9 +9,9 @@ import { useTodoContext } from '../../Context/ContextProvider';
 
 const TodoForm = () => {
 
-    const { fetchTodos,formSubmitURL } = useTodoContext()
+    const { fetchTodos, formSubmitURL } = useTodoContext()
 
-    const [description,setDescription] = useState('')
+    const [description, setDescription] = useState('')
     const maxLength = 500;
 
     const initialValues = {
@@ -31,9 +31,9 @@ const TodoForm = () => {
         const inputText = value.slice(0, maxLength);
         setFieldTouched(name, true);
         setFieldValue(name, inputText);
-        setDescription(inputText); 
+        setDescription(inputText);
     };
-    
+
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
@@ -86,7 +86,7 @@ const TodoForm = () => {
                         <div className="todo_form">
                             <div className="c-card animate__animated animate__backInDown">
                                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                                    {({ isSubmitting, values, touched, errors, setFieldTouched, setFieldValue }) => (
+                                    {({ isSubmitting, touched, errors }) => (
                                         <Form className="row form">
                                             <div className='mb-1'>
                                                 <label htmlFor="title" className="form-label">
@@ -95,7 +95,7 @@ const TodoForm = () => {
                                                     {touched.title && !errors.title && <sup style={{ color: 'green' }}>*</sup>}
                                                 </label>
                                                 <Field type="text" className="form-control" id="title" name="title" placeholder="Please Enter Todo Title here.."
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
+                                                    onChange={handleInputChange} />
                                                 <ErrorMessage name="title" component="div" className="error-message text-danger" />
                                             </div>
                                             <div className="mb-1">
@@ -108,7 +108,7 @@ const TodoForm = () => {
                                                     className="form-control"
                                                     id="date"
                                                     name="date"
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
+                                                    onChange={handleInputChange} />
                                                 <div>
                                                 </div>
                                                 <ErrorMessage name="date" component="div" className="error-message text-danger" />
@@ -120,8 +120,8 @@ const TodoForm = () => {
                                                     {touched.description && !errors.description && <sup style={{ color: 'green' }}>*</sup>}
                                                 </label>
                                                 <Field as="textarea" className="form-control" id="description" name="description" placeholder='Text..' rows="3"
-                                                    onChange={(e) => handleInputChange(e, setFieldTouched, setFieldValue)} />
-                                                    <p className="description_length">{description.length}/{maxLength}</p>
+                                                    onChange={handleInputChange} />
+                                                <p className="description_length">{description.length}/{maxLength}</p>
                                                 <ErrorMessage name="description" component="div" className="error-message text-danger" />
 
                                             </div>
