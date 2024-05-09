@@ -46,13 +46,10 @@ const formSubmitURL =`https://backend-todo-app-context-api.onrender.com/api/user
 
     const fetchTodos = async()=>{
         try {
-            setLoading(true)
             const response = await axios.get(`${baseURL}`)
             setTodos(response.data)
         } catch (error) {
             console.log(error);
-        }finally{
-            setLoading(false)
         }
     }
 
