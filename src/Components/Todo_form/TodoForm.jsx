@@ -9,7 +9,7 @@ import { useTodoContext } from '../../Context/ContextProvider';
 
 const TodoForm = () => {
 
-    const { fetchTodos } = useTodoContext()
+    const { fetchTodos,formSubmitURL } = useTodoContext()
 
     const [description,setDescription] = useState('')
     const maxLength = 500;
@@ -37,7 +37,7 @@ const TodoForm = () => {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/user/add-todo', values);
+            const response = await axios.post(`${formSubmitURL}`, values);
             if (response.status === 200 || response.status === 201) {
                 toast.success("Todo Added Successfully", {
                     position: "top-right",

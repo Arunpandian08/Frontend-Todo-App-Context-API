@@ -16,10 +16,10 @@ const ContextProvider = ({ children }) => {
         fetchFilteredTodos(filterType);
     }, [filterType]);
 
-const baseURL = `http://localhost:5000/api/user/get-todo`
-const updateURL = `http://localhost:5000/api/user/status`
-const deleteURL =`http://localhost:5000/api/user/delete-todo`
-    
+const baseURL = `https://backend-todo-app-context-api.onrender.com/api/user/get-todo`
+const updateURL = `https://backend-todo-app-context-api.onrender.com/api/user/status`
+const deleteURL =`https://backend-todo-app-context-api.onrender.com/api/user/delete-todo`
+const formSubmitURL =`https://backend-todo-app-context-api.onrender.com/api/user/add-todo`
 
     const fetchFilteredTodos = async () => {
         try {
@@ -97,7 +97,7 @@ const deleteURL =`http://localhost:5000/api/user/delete-todo`
 
 
     return (
-        <TodoContext.Provider value={{ loading, todos, fetchFilteredTodos, handleStatusUpdate, handleDelete, setFilterType, filterType }}>
+        <TodoContext.Provider value={{ loading, todos, fetchFilteredTodos, handleStatusUpdate, handleDelete, setFilterType, filterType,formSubmitURL }}>
             {children}
         </TodoContext.Provider>
     );

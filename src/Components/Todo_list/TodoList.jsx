@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './todoList.css';
-import Loader from '../Utility/Animation/Loader/Loader';
+import Loader from '../Utility/Loader/Loader';
 import { useTodoContext } from '../../Context/ContextProvider';
 
 const TodoList = () => {
