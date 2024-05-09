@@ -52,9 +52,7 @@ const TodoForm = () => {
                 });
                 resetForm();
                 fetchTodos();
-            } else {
-                throw new Error("Failed to add todo");
-            }
+            } 
         } catch (error) {
             console.error("Error Submitting Form", error);
             toast.error("Failed to add todo", {

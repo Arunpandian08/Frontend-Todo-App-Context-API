@@ -28,7 +28,6 @@ const formSubmitURL =`https://backend-todo-app-context-api.onrender.com/api/user
             // Simulate a delay to show the loading spinner
             await new Promise(resolve => setTimeout(resolve, 1000));
             let url = baseURL;
-
             // Modify the URL based on the filter type
             if (filterType === 'pending') {
                 url += '?status=pending';
@@ -47,10 +46,13 @@ const formSubmitURL =`https://backend-todo-app-context-api.onrender.com/api/user
 
     const fetchTodos = async()=>{
         try {
+            setLoading(true)
             const response = await axios.get(`${baseURL}`)
             setTodos(response.data)
         } catch (error) {
             console.log(error);
+        }finally{
+            setLoading(false)
         }
     }
 
